@@ -1,3 +1,9 @@
+## Setup
+
+sqlalchemy-to-graphql is not ready for use in production.
+
+There is a Flask server in `/example` that can be used to show the parser in action.
+
 ## Overview
 
 sqlalchemy-to-graphql does one thing: It takes as input a dictionary of the form ```{ 'query': <SQLAlchemy Object> }``` and outputs a dictionary of the form ```{ 'query': <GraphQLField>}```.
