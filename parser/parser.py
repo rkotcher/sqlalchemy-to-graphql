@@ -8,11 +8,10 @@ from graphql.core.type import (
     GraphQLSchema,
     GraphQLString,
 )
-from server.models import db
 from sqlalchemy import inspect
 import importlib
 
-from server.graph.models.owner import Owner
+from app import db
 
 class Parser():
     _graphql_objects = defaultdict(object)
@@ -29,9 +28,9 @@ class Parser():
                 'id': GraphQLArgument(
                     description='Used to identify a base-level %s schema' % query,
                     type=GraphQLNonNull(GraphQLInt),
-                )
+                ),
             },
-            resolver=lambda root, args, *_:
+            resolver=resolve_at_root
         )
 
     def __init__(self, query_to_sqlalchemy_class):
@@ -47,7 +46,6 @@ class Parser():
             for parser in available_attribute_parsers:
                 getattr(self, parser)(query, attribute)
 
-        # first pass: initialize graphql objects
         for (query, sqlalchemy_class) in query_to_sqlalchemy_class.iteritems():
             self._graphql_objects[query] = GraphQLObjectType(
                 query,
@@ -55,7 +53,6 @@ class Parser():
                 fields={}
             )
 
-        # second pass: set fields for each attribute
         for (query, sqlalchemy_class) in query_to_sqlalchemy_class.iteritems():
             for column in inspect(sqlalchemy_class).columns:
                 parse_attribute(query, column)
