@@ -19,7 +19,20 @@ class Parser():
     _query_to_sqlalchemy_class = None
 
     def __getitem__(self, query):
-        return self._graphql_objects[query]
+        def resolve_at_root(self, root, args, *_):
+            target_class = self._query_to_sqlalchemy_class[query]
+            return target_class.query.get(args['id'])
+
+        return GraphQLField(
+            self._graphql_objects[query],
+            args={
+                'id': GraphQLArgument(
+                    description='Used to identify a base-level %s schema' % query,
+                    type=GraphQLNonNull(GraphQLInt),
+                )
+            },
+            resolver=lambda root, args, *_:
+        )
 
     def __init__(self, query_to_sqlalchemy_class):
         self._query_to_sqlalchemy_class = query_to_sqlalchemy_class
