@@ -25,3 +25,20 @@ def query_schema():
 
 ```
 
+A post request to /graph with data='query { cat(id: 0) { id, name, owner { id, name } } }'
+
+might return something like:
+
+```
+{
+  "cat": {
+    "id": 233498,
+    "name": "Whiskers",
+    "owner": {
+      "id": 234674,
+      "name": "Billy-Bob"
+    }
+  }
+}
+```
+
