@@ -41,7 +41,7 @@ parser = Parser(requirements)
 root_schema = GraphQLSchema(query=GraphQLObjectType(
     'MyRootQuery',
     fields: lambda: {
-        query: parser[query] for query in my_sqlalchemy_objects,
+        query: parser[query] for query in requirements,
     }
 ))
 ```
