@@ -62,6 +62,8 @@ class Owner(db.Model):
     cat = db.Column(db.Integer, db.ForeignKey('cat.id'))
 ```
 
+Of course, you'd probably want to use a relationship for the one-to-one relationship between cat and owner, but relationships haven't been implemented yet. (That's next on the TODO list!)
+
 This method of defining classes within SQLAlchemy uses the Declarative API, and the vision for this parser is to parse attributes from SQLAlchemy classes, and transform them into GraphQL objects that can be used within a schema. Let's set up the following dictionary:
 
 ```
