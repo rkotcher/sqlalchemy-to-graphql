@@ -3,10 +3,10 @@
 sqlalchemy-to-graphql is not ready for use in production.
 
 There is a Flask server in `/example` that can be used to show the parser in action. To set this up for development, follow these steps:
-1. set your PYTHONPATH to the root of this repository
-2. pip install
-3. cd server && source venv/bin/activate
-4. python app.py
+* set your PYTHONPATH to the root of this repository
+* pip install
+* cd server && source venv/bin/activate
+* python app.py
 
 ## Overview
 
