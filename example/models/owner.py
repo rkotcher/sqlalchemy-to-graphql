@@ -1,3 +1,5 @@
+from example.models import db
+
 class Owner(db.Model):
     __tablename__ = 'owner'
 

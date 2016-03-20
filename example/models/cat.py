@@ -1,3 +1,5 @@
+from example.models import db
+
 class Cat(db.Model):
     __tablename__ = 'cat'
 

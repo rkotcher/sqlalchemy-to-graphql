@@ -11,14 +11,12 @@ from graphql.core.type import (
 from sqlalchemy import inspect
 import importlib
 
-from app import db
-
 class Parser():
     _graphql_objects = defaultdict(object)
     _query_to_sqlalchemy_class = None
 
-    def __getitem__(self, query):
-        def resolve_at_root(self, root, args, *_):
+    def get_root_field(self, query):
+        def resolve_at_root(root, args, *_):
             target_class = self._query_to_sqlalchemy_class[query]
             return target_class.query.get(args['id'])
 
