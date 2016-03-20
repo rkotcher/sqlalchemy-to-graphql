@@ -8,6 +8,12 @@ There is a Flask server in `/example` that can be used to show the parser in act
 * cd server && source venv/bin/activate
 * python app.py
 
+Perhaps the easiest way to query this server is to use curl:
+
+```
+curl -H "text" -X POST -d "query { cat(id: 0) { id, name, owner { id, name, cat { id, name } }} }" http://localhost:5000/graph
+```
+
 ## Overview
 
 sqlalchemy-to-graphql does one thing: It takes as input a dictionary of the form ```{ 'query': <SQLAlchemy Object> }``` and outputs a dictionary of the form ```{ 'query': <GraphQLField>}```.
