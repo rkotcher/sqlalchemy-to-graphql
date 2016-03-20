@@ -4,14 +4,17 @@ sqlalchemy-to-graphql is not ready for use in production.
 
 There is a Flask server in `/example` that can be used to show the parser in action. To set this up for development, follow these steps:
 * set your PYTHONPATH to the root of this repository
-* pip install
-* cd server && source venv/bin/activate
-* python app.py
+* `cd example && source venv/bin/activate`
+* `pip install`
+* `python app.py`
 
 Perhaps the easiest way to query this server is to use curl:
 
 ```
-curl -H "text" -X POST -d "query { cat(id: 0) { id, name, owner { id, name, cat { id, name } }} }" http://localhost:5000/graph
+curl -H "text" \
+  -X POST \
+  -d "query { cat(id: 0) { id, name, owner { id, name, cat { id, name } }} }" \
+  http://localhost:5000/graph
 ```
 
 returns...
