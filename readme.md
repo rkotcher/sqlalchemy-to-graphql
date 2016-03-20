@@ -95,3 +95,7 @@ def query_schema():
     return jsonify(**graphql(root_schema, request.get_data()).data)
 ```
 
+## Acknowledgements
+
+This project wouldn't be possible without the amazing [graphql-core](https://github.com/graphql-python/graphql-core)!
+
