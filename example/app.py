@@ -25,7 +25,7 @@ parser = Parser(my_sqlalchemy_objects)
 root_schema = GraphQLSchema(query=GraphQLObjectType(
     'MyRootQuery',
     fields=lambda: {
-        query: parser.get_root_field(query) for query in my_sqlalchemy_objects
+        query: parser[query] for query in my_sqlalchemy_objects
     },
 ))
 

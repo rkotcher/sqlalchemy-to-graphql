@@ -15,7 +15,7 @@ class Parser():
     _graphql_objects = defaultdict(object)
     _query_to_sqlalchemy_class = None
 
-    def get_root_field(self, query):
+    def __getitem__(self, query):
         def resolve_at_root(root, args, *_):
             target_class = self._query_to_sqlalchemy_class[query]
             return target_class.query.get(args['id'])

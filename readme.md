@@ -75,6 +75,7 @@ In this dummy example, the dictionary named "requirements" is the only required 
 
 ```
 from sqlalchemy-to-graphql.parser import Parser
+from graphql.core.type import GraphQLObjectType, GraphQLSchema
 
 parser = Parser(requirements)
 
