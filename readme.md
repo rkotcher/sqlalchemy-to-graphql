@@ -91,32 +91,3 @@ def query_schema():
     return jsonify(**graphql(root_schema, request.get_data()).data)
 ```
 
-That's all there is to it! The endpoint `/graph` is now set up to access your SQLAlchemy models through standard graphql queries. You can Google GraphQl and find tons of resources on how querying works, but for completion of this README, here's a simple query you could make against the models in our dummy example:
-
-```
-query {
-    cat(id: 0) {
-        id,
-        name,
-        owner {
-            id,
-            name
-        }
-    }
-}
-```
-returns...
-```
-{
-    "cat": {
-        "id": 233498,
-        "name": "Whiskers",
-        "owner": {
-            "id": 234674,
-            "name": "Billy-Bob"
-        }
-    }
-}
-```
-
-A working example using the same objects can be found in `/examples`.
